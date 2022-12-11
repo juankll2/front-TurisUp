@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class InputsPage extends StatefulWidget {
   const InputsPage({super.key});
@@ -14,9 +16,13 @@ class _InputsPage extends State<InputsPage> {
   String _latitud = '';
   String _address = '';
   String _location = '';
+  String _link = '';
   String _label = '';
   String _fn = '';
   String _imgPath = '';
+  List _imagesPaths = [];
+  String _descricion = '';
+  double distancia = 0.0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,6 +33,8 @@ class _InputsPage extends State<InputsPage> {
         padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
         children: <Widget>[
           _crearInput(),
+          // _divider(),
+          _descripcionInput(),
           _divider(),
           _cargarImagenInput(),
           _divider(),
@@ -37,6 +45,8 @@ class _InputsPage extends State<InputsPage> {
           _direccionInput(),
           _divider(),
           _locacionInput(),
+          _divider(),
+          _linkInput(),
           _divider(),
           _labelInput(),
           _divider(),
@@ -250,6 +260,36 @@ class _InputsPage extends State<InputsPage> {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _descripcionInput() {
+    return TextField(
+      textCapitalization: TextCapitalization.sentences,
+      decoration: InputDecoration(
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
+          hintText: 'Descripcion del recurso', //Title
+          labelText: 'Descripcion del recurso',
+          // helperText: 'Defina un nombre del nuevo recurso',
+          icon: Icon(Icons.label)),
+      onChanged: (valor) {
+        _descricion = valor;
+      },
+    );
+  }
+
+  Widget _linkInput() {
+    return TextField(
+      textCapitalization: TextCapitalization.sentences,
+      decoration: InputDecoration(
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
+          hintText: 'Link del recurso', //Title
+          labelText: 'Link del recurso',
+          // helperText: 'Defina un nombre del nuevo recurso',
+          icon: Icon(Icons.label)),
+      onChanged: (valor) {
+        _link = valor;
+      },
     );
   }
 }
