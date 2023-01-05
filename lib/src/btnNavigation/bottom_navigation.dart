@@ -22,7 +22,7 @@ class _BtnNavigationState extends State<BtnNavigation> {
       type: BottomNavigationBarType.fixed,
       iconSize: 25.0,
       selectedFontSize: 14.0,
-      selectedItemColor: Colors.amber[700],
+      selectedItemColor: Colors.blue[400],
       unselectedFontSize: 10.0,
       unselectedItemColor: Colors.grey,
       items: const [

@@ -29,6 +29,7 @@ class ExplorerPage extends StatelessWidget {
         _ButtonIni('Iglesias'),
         _ButtonIni('Museos'),
         _ButtonIni('Playas'),
+        _ButtonIni('Teatros'),
         // _ButtonIni('Teatros'),
       ],
     );

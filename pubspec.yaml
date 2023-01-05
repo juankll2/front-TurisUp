@@ -38,8 +38,15 @@ dependencies:
   cupertino_icons: ^1.0.2
   image_picker: #dependencia para peticiones de imagenes 
   http: #dependencia para peticiones http
-  dio:
+  dio: #dependencia para hacer peticiones http multi/form-data
+  photo_view: #manejo de fotos
+  #font_awesome_flutter:  #iconos flutter
+  google_maps_flutter: ^2.2.2 #libreria para google maps
+  provider: ^6.0.5 #
+  readmore: ^2.2.0 #para usar el read more
+  flutter_cache_manager: ^3.3.0 #descargar imagenes 
 
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

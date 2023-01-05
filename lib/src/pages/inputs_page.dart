@@ -1,7 +1,7 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 class InputsPage extends StatefulWidget {
   const InputsPage({super.key});
@@ -11,6 +11,17 @@ class InputsPage extends StatefulWidget {
 }
 
 class _InputsPage extends State<InputsPage> {
+  final titleCtr = TextEditingController();
+  final longitudCtr = TextEditingController();
+  final latitudCtr = TextEditingController();
+  final addressCtrCtr = TextEditingController();
+  final locationCtr = TextEditingController();
+  final linkCtr = TextEditingController();
+  final labelCtr = TextEditingController();
+  final fnCtr = TextEditingController();
+  final descricionCtr = TextEditingController();
+
+  String url = 'http://192.168.1.9:8001/api/place/add';
   String _title = '';
   String _longitud = '';
   String _latitud = '';
@@ -22,7 +33,8 @@ class _InputsPage extends State<InputsPage> {
   String _imgPath = '';
   List _imagesPaths = [];
   String _descricion = '';
-  double distancia = 0.0;
+  // double distancia = 0.0;
+  final myController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,22 +47,22 @@ class _InputsPage extends State<InputsPage> {
           _crearInput(),
           // _divider(),
           _descripcionInput(),
+          // _divider(),
+          _latitudInput(),
+          // _divider(),
+          _longitudInput(),
+          // _divider(),
+          _direccionInput(),
+          // _divider(),
+          _locacionInput(),
+          // _divider(),
+          _linkInput(),
+          // _divider(),
+          _labelInput(),
+          // _divider(),
+          _fnInput(),
           _divider(),
           _cargarImagenInput(),
-          _divider(),
-          _latitudInput(),
-          _divider(),
-          _longitudInput(),
-          _divider(),
-          _direccionInput(),
-          _divider(),
-          _locacionInput(),
-          _divider(),
-          _linkInput(),
-          _divider(),
-          _labelInput(),
-          _divider(),
-          _fnInput(),
           _divider(),
           _btnsAceptarCancelar(),
         ],
@@ -67,16 +79,36 @@ class _InputsPage extends State<InputsPage> {
               minWidth: 10.0,
               height: 40.0,
               color: Colors.blue[200],
-              onPressed: () {},
+              onPressed: () {
+                _title = titleCtr.text;
+                _longitud = longitudCtr.text;
+                _latitud = latitudCtr.text;
+                _address = addressCtrCtr.text;
+                _location = locationCtr.text;
+                _link = linkCtr.text;
+                _label = labelCtr.text;
+                _fn = fnCtr.text;
+                _descricion = descricionCtr.text;
+                pathImage(url, _imgPath);
+                titleCtr.text = '';
+                longitudCtr.text = '';
+                latitudCtr.text = '';
+                addressCtrCtr.text = '';
+                locationCtr.text = '';
+                linkCtr.text = '';
+                labelCtr.text = '';
+                fnCtr.text = '';
+                descricionCtr.text = '';
+              },
               child: Text('Crear recurso'),
             ),
-            MaterialButton(
-              minWidth: 10.0,
-              height: 40.0,
-              color: Colors.blue[200],
-              onPressed: () {},
-              child: Text('Cancelar'),
-            )
+            // MaterialButton(
+            //   minWidth: 10.0,
+            //   height: 40.0,
+            //   color: Colors.blue[200],
+            //   onPressed: () {},
+            //   child: Text('Cancelar'),
+            // )
           ]),
     );
   }
@@ -91,107 +123,142 @@ class _InputsPage extends State<InputsPage> {
   }
 
   Widget _crearInput() {
-    return TextField(
-      textCapitalization: TextCapitalization.sentences,
-      decoration: InputDecoration(
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
-          hintText: 'Nombre del recurso', //Title
-          labelText: 'Nombre del recurso',
-          // helperText: 'Defina un nombre del nuevo recurso',
-          icon: Icon(Icons.card_travel)),
-      onChanged: (valor) {
-        _title = valor;
-      },
+    return Container(
+      margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
+      child: TextField(
+        controller: titleCtr,
+        textCapitalization: TextCapitalization.sentences,
+        decoration: InputDecoration(
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
+            hintText: 'Nombre del recurso', //Title
+            labelText: 'Nombre del recurso',
+            // helperText: 'Defina un nombre del nuevo recurso',
+            icon: Icon(Icons.card_travel)),
+        // onChanged: (valor) {
+        //   _title = valor;
+        // },
+      ),
     );
   }
 
   Widget _longitudInput() {
-    return TextField(
-      keyboardType: TextInputType.number,
-      decoration: InputDecoration(
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
-          hintText: 'Longitud del recurso', //Title
-          labelText: 'Longitud del recurso',
-          //helperText: 'Defina la longitud del nuevo recurso',
-          icon: Icon(Icons.place)),
-      onChanged: (valor) {
-        _longitud = valor;
-      },
+    return Container(
+      margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
+      child: TextField(
+        controller: longitudCtr,
+        keyboardType: TextInputType.number,
+        decoration: InputDecoration(
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
+            hintText: 'Longitud del recurso', //Title
+            labelText: 'Longitud del recurso',
+            //helperText: 'Defina la longitud del nuevo recurso',
+            icon: Icon(Icons.place)),
+        // onChanged: (valor) {
+        //   _longitud = valor;
+        // },
+      ),
     );
   }
 
   Widget _latitudInput() {
-    return TextField(
-      keyboardType: TextInputType.number,
-      decoration: InputDecoration(
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
-          hintText: 'Latitud del recurso', //Title
-          labelText: 'Latitud del recurso',
-          //helperText: 'Defina la latitud del nuevo recurso',
-          icon: Icon(Icons.place)),
-      onChanged: (valor) {
-        _longitud = valor;
-      },
+    return Container(
+      margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
+      child: TextField(
+        controller: latitudCtr,
+        keyboardType: TextInputType.number,
+        decoration: InputDecoration(
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
+            hintText: 'Latitud del recurso', //Title
+            labelText: 'Latitud del recurso',
+            //helperText: 'Defina la latitud del nuevo recurso',
+            icon: Icon(Icons.place)),
+        // onChanged: (valor) {
+        //   _latitud = valor;
+        // },
+      ),
     );
   }
 
   Widget _direccionInput() {
-    return TextField(
-      textCapitalization: TextCapitalization.sentences,
-      decoration: InputDecoration(
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
-          hintText: 'Dirección del recurso', //Title
-          labelText: 'Dirección del recurso',
-          // helperText: 'Defina un nombre del nuevo recurso',
-          icon: Icon(Icons.streetview)),
-      onChanged: (valor) {
-        _address = valor;
-      },
+    return Container(
+      margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
+      child: TextField(
+        controller: addressCtrCtr,
+        textCapitalization: TextCapitalization.sentences,
+        decoration: InputDecoration(
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
+            hintText: 'Dirección del recurso', //Title
+            labelText: 'Dirección del recurso',
+            // helperText: 'Defina un nombre del nuevo recurso',
+            icon: Icon(Icons.streetview)),
+        // onChanged: (valor) {
+        //   _address = valor;
+        // },
+      ),
     );
   }
 
   Widget _locacionInput() {
-    return TextField(
-      textCapitalization: TextCapitalization.sentences,
-      decoration: InputDecoration(
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
-          hintText: 'Locación del recurso', //Title
-          labelText: 'Locación del recurso',
-          // helperText: 'Defina un nombre del nuevo recurso',
-          icon: Icon(Icons.location_city)),
-      onChanged: (valor) {
-        _location = valor;
-      },
+    return Container(
+      margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+      child: TextField(
+        controller: locationCtr,
+        textCapitalization: TextCapitalization.sentences,
+        decoration: InputDecoration(
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
+            hintText: 'Locación del recurso', //Title
+            labelText: 'Locación del recurso',
+            // helperText: 'Defina un nombre del nuevo recurso',
+            icon: Icon(Icons.location_city)),
+        // onChanged: (valor) {
+        //   _location = valor;
+        // },
+      ),
     );
   }
 
   Widget _labelInput() {
-    return TextField(
-      textCapitalization: TextCapitalization.sentences,
-      decoration: InputDecoration(
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
-          hintText: 'Etiquetas del recurso', //Title
-          labelText: 'Etiquetas del recurso',
-          // helperText: 'Defina un nombre del nuevo recurso',
-          icon: Icon(Icons.label)),
-      onChanged: (valor) {
-        _label = valor;
-      },
+    return Container(
+      margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
+      child: TextField(
+        controller: labelCtr,
+        textCapitalization: TextCapitalization.sentences,
+        decoration: InputDecoration(
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
+            hintText: 'Etiquetas del recurso', //Title
+            labelText: 'Etiquetas del recurso',
+            // helperText: 'Defina un nombre del nuevo recurso',
+            icon: Icon(Icons.label)),
+        // onChanged: (valor) {
+        //   _label = valor;
+        // },
+      ),
     );
   }
 
   Widget _fnInput() {
-    return TextField(
-      textCapitalization: TextCapitalization.sentences,
-      decoration: InputDecoration(
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
-          hintText: 'Fn del recurso', //Title
-          labelText: 'Fn del recurso',
-          // helperText: 'Defina un nombre del nuevo recurso',
-          icon: Icon(Icons.fullscreen_exit_outlined)),
-      onChanged: (valor) {
-        _fn = valor;
-      },
+    return Container(
+      margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
+      child: TextField(
+        controller: fnCtr,
+        textCapitalization: TextCapitalization.sentences,
+        decoration: InputDecoration(
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
+            hintText: 'Fn del recurso', //Title
+            labelText: 'Fn del recurso',
+            // helperText: 'Defina un nombre del nuevo recurso',
+            icon: Icon(Icons.fullscreen_exit_outlined)),
+        // onChanged: (valor) {
+        //   _fn = valor;
+        // },
+      ),
     );
   }
 
@@ -229,7 +296,7 @@ class _InputsPage extends State<InputsPage> {
 
                         setState(() {});
                         // print('----------------------------------------------');
-                        // print(_imgPath);
+                        print(_imgPath);
                       },
                       color: Colors.blue[100],
                     )
@@ -264,32 +331,66 @@ class _InputsPage extends State<InputsPage> {
   }
 
   Widget _descripcionInput() {
-    return TextField(
-      textCapitalization: TextCapitalization.sentences,
-      decoration: InputDecoration(
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
-          hintText: 'Descripcion del recurso', //Title
-          labelText: 'Descripcion del recurso',
-          // helperText: 'Defina un nombre del nuevo recurso',
-          icon: Icon(Icons.label)),
-      onChanged: (valor) {
-        _descricion = valor;
-      },
+    return Container(
+      margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
+      child: TextField(
+        controller: descricionCtr,
+        textCapitalization: TextCapitalization.sentences,
+        decoration: InputDecoration(
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
+            hintText: 'Descripcion del recurso', //Title
+            labelText: 'Descripcion del recurso',
+            // helperText: 'Defina un nombre del nuevo recurso',
+            icon: Icon(Icons.label)),
+        // onChanged: (valor) {
+        //   _descricion = valor;
+        // },
+      ),
     );
   }
 
   Widget _linkInput() {
-    return TextField(
-      textCapitalization: TextCapitalization.sentences,
-      decoration: InputDecoration(
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
-          hintText: 'Link del recurso', //Title
-          labelText: 'Link del recurso',
-          // helperText: 'Defina un nombre del nuevo recurso',
-          icon: Icon(Icons.label)),
-      onChanged: (valor) {
-        _link = valor;
-      },
+    return Container(
+      margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
+      child: TextField(
+        controller: linkCtr,
+        textCapitalization: TextCapitalization.sentences,
+        decoration: InputDecoration(
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
+            hintText: 'Link del recurso', //Title
+            labelText: 'Link del recurso',
+            // helperText: 'Defina un nombre del nuevo recurso',
+            icon: Icon(Icons.label)),
+        // onChanged: (valor) {
+        //   _link = valor;
+        // },
+      ),
     );
+  }
+
+  Future<http.StreamedResponse> pathImage(String url, String filePath) async {
+    Map<String, String> modelo = <String, String>{
+      'descripcion': '$_descricion',
+      'userId': '22222222344a010c5dcab4b',
+      'latitud': '$_latitud',
+      'longitud': '$_longitud',
+      'address': '$_address',
+      'location': '$_location',
+      'link': '$_link',
+      'title': '$_title',
+      'label': '$_label',
+      'fn': '$_fn',
+    };
+    String model = json.encode(modelo);
+    var request = http.MultipartRequest('POST', Uri.parse(url));
+    request.headers.addAll({"Content-Type": "multipart/form-data"});
+    request.fields['model'] = model;
+    request.files.add(await http.MultipartFile.fromPath('files', filePath));
+    var response = await request.send();
+    final respStr = await response.stream.bytesToString();
+    if (response.statusCode == 200) print('Uploaded!');
+    return jsonDecode(respStr);
   }
 }
