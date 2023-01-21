@@ -1,45 +1,35 @@
 class Datos_Place {
-  String placeId;
-  String? descripcion = '';
-  String userId = '';
-  String latitud = '';
-  String longitud = '';
-  String? address = '';
-  String? location = '';
-  String? link = '';
-  String? title = '';
-  String? label = '';
-  String? fn = '';
-  List imagesPaths = [];
+  String id;
+  String? nombre = '';
+  String? status = '';
+  var coordenadas = {};
+  String descripcion = '';
+  List imagenesPaths = [];
+  Map? organizacion = {};
+  Map? region = {};
+  Map? user = {};
+
   double? distance = 0.0;
 
   Datos_Place(
-      {required this.placeId,
-      this.descripcion,
-      required this.userId,
-      required this.latitud,
-      required this.longitud,
-      this.address,
-      this.location,
-      this.link,
-      this.title,
-      this.label,
-      this.fn,
-      required this.imagesPaths,
-      this.distance});
+      {required this.id,
+      required this.nombre,
+      this.status,
+      required this.coordenadas,
+      required this.descripcion,
+      required this.imagenesPaths,
+      this.organizacion,
+      this.region,
+      this.user});
 
   static Datos_Place formJson(json) => Datos_Place(
-      placeId: json['placeId'],
+      id: json['id'],
+      nombre: json['nombre'],
+      status: json['status'],
+      coordenadas: json['coordenadas'],
       descripcion: json['descripcion'],
-      userId: json['userId'],
-      latitud: json['latitud'],
-      longitud: json['longitud'],
-      address: json['address'],
-      location: json['location'],
-      link: json['link'],
-      title: json['title'],
-      label: json['label'],
-      fn: json['fn'],
-      imagesPaths: json['imagesPaths'],
-      distance: json['distance']);
+      imagenesPaths: json['imagenesPaths'],
+      organizacion: json['organizacion'],
+      region: json['region'],
+      user: json['user']);
 }

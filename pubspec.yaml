@@ -31,11 +31,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
+  #cupertino_icons: ^1.0.2
   image_picker: #dependencia para peticiones de imagenes 
   http: #dependencia para peticiones http
   dio: #dependencia para hacer peticiones http multi/form-data
@@ -45,6 +43,13 @@ dependencies:
   provider: ^6.0.5 #
   readmore: ^2.2.0 #para usar el read more
   flutter_cache_manager: ^3.3.0 #descargar imagenes 
+  flutter_carousel_slider: ^1.1.0 #realizar un carucel de imagenes
+  permission_handler: ^9.2.0 #permisos para escuchar la ubicacion y ver si el gps esta encendido
+  cupertino_icons: ^1.0.5
+  flutter_polyline_points: ^1.0.0
+  location: ^4.4.0
+  geolocator: ^9.0.2
+
 
   
 dev_dependencies:

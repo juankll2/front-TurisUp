@@ -21,7 +21,7 @@ class _InputsPage extends State<InputsPage> {
   final fnCtr = TextEditingController();
   final descricionCtr = TextEditingController();
 
-  String url = 'http://192.168.1.9:8001/api/place/add';
+  String url = 'http://192.168.1.3:8083/api/recurso/todos';
   String _title = '';
   String _longitud = '';
   String _latitud = '';
@@ -382,6 +382,7 @@ class _InputsPage extends State<InputsPage> {
       'title': '$_title',
       'label': '$_label',
       'fn': '$_fn',
+      'status': 'aprobado',
     };
     String model = json.encode(modelo);
     var request = http.MultipartRequest('POST', Uri.parse(url));

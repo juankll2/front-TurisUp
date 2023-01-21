@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:turismup/src/pages/explorer_page.dart';
 
-import '../pages/home_page1.dart';
 import '../pages/map_page.dart';
 import '../pages/profile_page.dart';
 import '../pages/routes_page.dart';

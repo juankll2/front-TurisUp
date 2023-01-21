@@ -12,7 +12,7 @@ Future<BitmapDescriptor> imageToBytes(String path) async {
   final ui.PictureRecorder pictureRecorder = ui.PictureRecorder();
   final Canvas canvas = Canvas(pictureRecorder);
   final Radius radius = Radius.circular(size.width / 2);
-  final Paint shadowPaint = Paint()..color = Color.fromARGB(255, 15, 131, 227);
+  final Paint shadowPaint = Paint()..color = Color.fromARGB(255, 63, 125, 254);
   const double shadowWidth = 15.0;
   final Paint borderPaint = Paint()..color = Colors.white;
   const double borderWidth = 3.0;

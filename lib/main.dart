@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-////
 import 'package:turismup/src/pages/home_page.dart';
-import 'package:turismup/src/providers/menu_providers.dart';
+import 'package:turismup/src/pages/inputs_page.dart';
+import 'package:turismup/src/pages/map_page.dart';
+////
 
 void main() {
   runApp(const MyApp());
@@ -12,9 +13,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: prefer_const_constructors
     return MaterialApp(
-        title: 'TurismUp App',
-        debugShowCheckedModeBanner: false,
-        home: HomePage());
+      title: 'TurismUp App',
+      initialRoute: '/',
+      debugShowCheckedModeBanner: false,
+      // home: HomePage());
+      routes: {
+        '/': (context) => const HomePage(),
+        '/addPlace': (context) => const InputsPage(),
+        '/mapa': (context) => const MapPage(),
+      },
+    );
   }
 }

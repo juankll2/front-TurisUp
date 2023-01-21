@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:turismup/src/routes/routes.dart';
-
 import '../btnNavigation/bottom_navigation.dart';
 
 class HomePage extends StatefulWidget {
