@@ -20,13 +20,12 @@ class _MapPageState extends State<MapPage> {
   @override
   void initState() {
     // TODO: implement initState
-    //cargarRuta();
+
+    super.initState();
     _controller.getCurrentLocation();
-    //_controller.obtenerDatos();
     _controller.addListener(() {
       setState(() {});
     });
-    super.initState();
 
     // _controller.cargarMarkers();
     // _controller.posicionActual();
@@ -41,31 +40,89 @@ class _MapPageState extends State<MapPage> {
       body: Center(
           child: FutureBuilder<List<Datos_Place>>(
         future: _controller.placesFuture,
-        builder: (context, snapshot) {
-          if (snapshot.hasData && _controller.currentLocation != null) {
-            final places = snapshot.data!;
+        builder: (context, AsyncSnapshot snapshot) {
+          if (snapshot.hasData) {
+            // final places = snapshot.data!;
             return crearMapa();
+          } else if (snapshot.hasError) {
+            return Center(child: Text("Error: ${snapshot.error}"));
           } else {
-            return const Center(child: Text('Cargando datos'));
+            return const CircularProgressIndicator();
+            //return const Center(child: Text('Cargando datos'));
           }
         },
       )),
-      floatingActionButton: _controller.botonCamino(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: Row(
+        // mainAxisAlignment: MainAxisAlignment.start,
+        // mainAxisSize: MainAxisSize.max,
+        children: [
+          botonCamino(),
+          botonEliminarCamino(),
+        ],
+      ),
     );
   }
 
-  void changeLocation() {
-    setState(() {
-      _controller.getCurrentLocation();
-    });
+  Widget botonCamino() {
+    return GestureDetector(
+      child: Row(
+        // mainAxisAlignment: MainAxisAlignment.start,
+        // ignore: prefer_const_literals_to_create_immutables
+        children: <Widget>[
+          const SizedBox(
+            width: 30.0,
+          ),
+          FloatingActionButton(
+              child: const Icon(Icons.navigation_outlined),
+              onPressed: () {
+                setState(() {
+                  _controller.getPolyPoints();
+                });
+              }),
+          const SizedBox(
+            width: 10.0,
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget botonEliminarCamino() {
+    return GestureDetector(
+      child: Row(
+        // mainAxisAlignment: MainAxisAlignment.start,
+        // ignore: prefer_const_literals_to_create_immutables
+        children: <Widget>[
+          const SizedBox(
+            width: 30.0,
+          ),
+          FloatingActionButton(
+              child: const Icon(Icons.delete_forever_outlined),
+              onPressed: () {
+                setState(() {
+                  _controller.resetearPolyPoints();
+                });
+              }),
+          const SizedBox(
+            width: 10.0,
+          )
+        ],
+      ),
+    );
   }
 
   Widget crearMapa() {
     return GoogleMap(
-      initialCameraPosition: CameraPosition(
-          target: LatLng(_controller.currentLocation!.latitude!,
-              _controller.currentLocation!.longitude!),
-          zoom: 16),
+      onMapCreated: (mapController) {
+        _controller.onMapCreated(mapController);
+      },
+      // initialCameraPosition: CameraPosition(
+      //     target: LatLng(_controller.currentLocation!.latitude!,
+      //         _controller.currentLocation!.longitude!),
+      //     zoom: 16),
+      initialCameraPosition:
+          CameraPosition(target: LatLng(-2.899224, -79.010808), zoom: 10),
       markers: Set.of(_controller.jsonMarkers.values),
       polylines: {
         Polyline(
@@ -75,10 +132,9 @@ class _MapPageState extends State<MapPage> {
           width: 10,
         ),
       },
-      onMapCreated: (mapController) {
-        _controller.onMapCreated(mapController);
-      },
-      myLocationEnabled: false,
+
+      myLocationEnabled: true,
+      // myLocationButtonEnabled: true,
       zoomControlsEnabled: false,
       mapType: MapType.normal,
       // onTap: _controller.onTap

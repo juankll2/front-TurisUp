@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const HomePage(),
         '/addPlace': (context) => const InputsPage(),
-        '/mapa': (context) => const MapPage(),
+        // '/mapa': (context) => MapPage(),
       },
     );
   }

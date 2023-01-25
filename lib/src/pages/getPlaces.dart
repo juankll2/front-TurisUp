@@ -62,7 +62,9 @@ class CargarJsonState extends State<CargarJson> {
               width: double.infinity,
               height: 250,
               child: Image(
-                image: NetworkImage(paths[0]),
+                image: NetworkImage(
+                    'https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg'),
+                // image: NetworkImage(paths[0]),
                 // color: Colors.amber,
                 height: 100,
                 width: double.infinity,
@@ -124,7 +126,9 @@ class CargarJsonState extends State<CargarJson> {
                     padding: const EdgeInsets.all(20),
                     // ignore: prefer_const_constructors
                     child: CircleAvatar(
-                      backgroundImage: NetworkImage(paths[0]),
+                      backgroundImage: NetworkImage(
+                          'https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg'),
+                      // backgroundImage: NetworkImage(paths[0]),
                       radius: 30,
                     ),
                   ),
@@ -234,6 +238,8 @@ class CargarJsonState extends State<CargarJson> {
     );
   }
 
+  List urlimagen = [];
+
   Widget buildPlaces(List<Datos_Place> places) => GridView.count(
         // Crea una grid con 2 columnas. Si cambias el scrollDirection a
         // horizontal, esto produciría 2 filas.
@@ -260,7 +266,9 @@ class CargarJsonState extends State<CargarJson> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
                       child: Image.network(
-                        (place.imagenesPaths[0]),
+                        ('https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg'),
+                        // child: Image.network(
+                        //   (place.imagenesPaths[0]),
                         fit: BoxFit.fill,
                         //height: 150.0,
                         //width: 150.0,
@@ -313,7 +321,8 @@ class CargarJsonState extends State<CargarJson> {
                       builder: (context) => buildPresentation(
                           (place.nombre).toString(),
                           (place.descripcion).toString(),
-                          place.imagenesPaths,
+                          // place.imagenesPaths,
+                          (urlimagen),
                           (place.descripcion).toString(),
                           (place.organizacion!['nombre']).toString())));
             },
