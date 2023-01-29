@@ -31,13 +31,16 @@ class MapController extends ChangeNotifier {
   double latitud = 0.0;
   double longitud = 0.0;
 
+  ///crear rutas con varios puntos
+  List<LatLng> polylineCoordinates2 = [];
+
   void onMapCreated(GoogleMapController controller) async {
     cargarMarkers();
     controller.setMapStyle(mapStyle);
   }
 
   static Future<List<Datos_Place>> getDatos() async {
-    const url = 'http://192.168.1.4:8083/api/recurso/todos';
+    const url = 'http://192.168.43.127:8083/api/recurso/todos';
     final response = await http.get(Uri.parse(url));
     var datos = json.decode(utf8.decode(response.bodyBytes));
     for (var i = 0; i < datos.length; i++) {
@@ -106,6 +109,39 @@ class MapController extends ChangeNotifier {
     notifyListeners();
   }
 
+  void getPolyPointsRuta(Map<dynamic, dynamic> ruta) async {
+    print('entro');
+    polylineCoordinates2 = [];
+    Position posact = await _determinarPosicion();
+    double latini = posact.latitude;
+    double lngini = posact.longitude;
+    print('-----------------$latini $lngini---------------');
+    double latfn = 0;
+    double lngfn = 0;
+    for (var v in ruta.values) {
+      latfn = v[0];
+      print(v[0]);
+      lngfn = v[1];
+      print(v[1]);
+      PolylinePoints polylinePoints = PolylinePoints();
+      PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
+          google_api_key,
+          PointLatLng(latini, lngini),
+          PointLatLng(latfn, lngfn));
+      print('-----------------------');
+      print(result.points);
+      if (result.points.isNotEmpty) {
+        latini = latfn;
+        lngini = lngfn;
+        // ignore: avoid_function_literals_in_foreach_calls
+        result.points.forEach((PointLatLng point) =>
+            polylineCoordinates2.add(LatLng(point.latitude, point.longitude)));
+        print(polylineCoordinates2);
+      }
+    }
+    notifyListeners();
+  }
+
   ///
   //// localizicion en el mapa
   ///
@@ -118,8 +154,6 @@ class MapController extends ChangeNotifier {
     });
     // cargarMarkers();
     posicionActual();
-    print('++++++++++++++++++++++++++++++');
-    print(jsonMarkers);
     // GoogleMapController googleMapController = await ctrl.future;
     /*location.onLocationChanged.listen((newLoc) {
       currentLocation = newLoc;
@@ -134,7 +168,7 @@ class MapController extends ChangeNotifier {
     if (Geolocator.isLocationServiceEnabled() != false) {
       Position posact = await _determinarPosicion();
       String url =
-          'https://scontent.fgye1-2.fna.fbcdn.net/v/t39.30808-6/279907136_298467455807126_8672320356479345253_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeG6f3alqMqFxb5UqOCuT2buGMt2QRvft6IYy3ZBG9-3ovsEEloXdi5U78cAI9sZKzPF5P67D8cvfcpifpL_zr2u&_nc_ohc=B4EInw8U6yEAX8xOCdN&_nc_ht=scontent.fgye1-2.fna&oh=00_AfBtUG8xPG0tSyIFjDz7GnvwM93K5zjibtYdq_0NNNrZaQ&oe=63C3997A';
+          'https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg';
       var id1 = MarkerId("currentLocation");
       var marker1 = Marker(
           markerId: const MarkerId("currentLocation"),

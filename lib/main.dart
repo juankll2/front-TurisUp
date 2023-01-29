@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:turismup/src/pages/home_page.dart';
 import 'package:turismup/src/pages/inputs_page.dart';
+import 'package:turismup/src/pages/mapRoutes_page.dart';
 import 'package:turismup/src/pages/map_page.dart';
 ////
 
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => const HomePage(),
         '/addPlace': (context) => const InputsPage(),
         // '/mapa': (context) => MapPage(),
+        // '/mapaRutas': (context) => const MapRoutesPage(),
       },
     );
   }
