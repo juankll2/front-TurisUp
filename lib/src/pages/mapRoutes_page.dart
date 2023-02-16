@@ -27,7 +27,7 @@ class _MapRoutesPageState extends State<MapRoutesPage> {
     _controller.getCurrentLocation();
     _controller.getPolyPointsRuta(widget.rutas);
     _controller.addListener(() {
-      setState(() {});
+      // setState(() {});
     });
 
     // _controller.cargarMarkers();

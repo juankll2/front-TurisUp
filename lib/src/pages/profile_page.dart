@@ -3,6 +3,8 @@ import 'package:flutter_carousel_slider/carousel_slider.dart';
 import 'package:flutter_carousel_slider/carousel_slider_indicators.dart';
 import 'package:flutter_carousel_slider/carousel_slider_transforms.dart';
 
+import '../controller/descargarJsonController.dart';
+
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
@@ -20,16 +22,20 @@ final List<String> imgList = [
 ];
 
 class _ProfilePageState extends State<ProfilePage> {
+  //Varibable del controlador para llamar el metodo para almacenar json
+  // final _controller = DescargarJsonController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Perfil de usuario'),
-        ),
-        body: Container(
-          height: 250,
-          child: _carrucel(),
-        ));
+      appBar: AppBar(
+        title: const Text('Perfil de usuario'),
+      ),
+      body: Container(
+        height: 250,
+        child: const DescargarJsonController(),
+      ),
+    );
   }
 
   // funcion para hacer un carrucel de imagenes

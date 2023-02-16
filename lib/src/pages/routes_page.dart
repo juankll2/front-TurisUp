@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:turismup/src/pages/mapRoutes_page.dart';
+import 'package:turismup/src/pages/mapsOffline.dart';
+import 'package:turismup/src/pages/offlinePrueba.dart';
 import 'package:turismup/src/pages/places_routes.dart';
-
 import '../controller/rutasController.dart';
-import 'mapOffline_page.dart';
 
 class RoutePage extends StatefulWidget {
   const RoutePage({super.key});
@@ -107,7 +107,7 @@ class _RoutePageState extends State<RoutePage> {
                       context,
                       // MaterialPageRoute(builder: (context) => CrearRecursoPage()),
                       MaterialPageRoute(
-                        builder: (context) => const MapsOffline(),
+                        builder: (context) => const MapsOfflineP(),
                       ));
                 });
               }),

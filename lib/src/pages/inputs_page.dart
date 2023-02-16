@@ -21,7 +21,7 @@ class _InputsPage extends State<InputsPage> {
   final fnCtr = TextEditingController();
   final descricionCtr = TextEditingController();
 
-  String url = 'http://192.168.1.3:8083/api/recurso/todos';
+  String url = 'http://34.136.87.84:8083/api/recurso/nuevo';
   String _title = '';
   String _longitud = '';
   String _latitud = '';
@@ -45,22 +45,19 @@ class _InputsPage extends State<InputsPage> {
         padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
         children: <Widget>[
           _crearInput(),
-          // _divider(),
           _descripcionInput(),
-          // _divider(),
           _latitudInput(),
-          // _divider(),
           _longitudInput(),
-          // _divider(),
-          _direccionInput(),
-          // _divider(),
-          _locacionInput(),
-          // _divider(),
-          _linkInput(),
-          // _divider(),
-          _labelInput(),
-          // _divider(),
-          _fnInput(),
+          //// informacion adicional que se tenia antes
+          // _direccionInput(),
+          // // _divider(),
+          // _locacionInput(),
+          // // _divider(),
+          // _linkInput(),
+          // // _divider(),
+          // _labelInput(),
+          // // _divider(),
+          // _fnInput(),
           _divider(),
           _cargarImagenInput(),
           _divider(),
@@ -83,22 +80,23 @@ class _InputsPage extends State<InputsPage> {
                 _title = titleCtr.text;
                 _longitud = longitudCtr.text;
                 _latitud = latitudCtr.text;
-                _address = addressCtrCtr.text;
-                _location = locationCtr.text;
-                _link = linkCtr.text;
-                _label = labelCtr.text;
-                _fn = fnCtr.text;
+                // _address = addressCtrCtr.text;
+                // _location = locationCtr.text;
+                // _link = linkCtr.text;
+                // _label = labelCtr.text;
+                // _fn = fnCtr.text;
                 _descricion = descricionCtr.text;
                 pathImage(url, _imgPath);
                 titleCtr.text = '';
                 longitudCtr.text = '';
                 latitudCtr.text = '';
-                addressCtrCtr.text = '';
-                locationCtr.text = '';
-                linkCtr.text = '';
-                labelCtr.text = '';
-                fnCtr.text = '';
+                // addressCtrCtr.text = '';
+                // locationCtr.text = '';
+                // linkCtr.text = '';
+                // labelCtr.text = '';
+                // fnCtr.text = '';
                 descricionCtr.text = '';
+                Navigator.pop(context);
               },
               child: Text('Crear recurso'),
             ),
@@ -202,65 +200,65 @@ class _InputsPage extends State<InputsPage> {
     );
   }
 
-  Widget _locacionInput() {
-    return Container(
-      margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-      child: TextField(
-        controller: locationCtr,
-        textCapitalization: TextCapitalization.sentences,
-        decoration: InputDecoration(
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
-            hintText: 'Locación del recurso', //Title
-            labelText: 'Locación del recurso',
-            // helperText: 'Defina un nombre del nuevo recurso',
-            icon: Icon(Icons.location_city)),
-        // onChanged: (valor) {
-        //   _location = valor;
-        // },
-      ),
-    );
-  }
+  // Widget _locacionInput() {
+  //   return Container(
+  //     margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+  //     child: TextField(
+  //       controller: locationCtr,
+  //       textCapitalization: TextCapitalization.sentences,
+  //       decoration: InputDecoration(
+  //           border:
+  //               OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
+  //           hintText: 'Locación del recurso', //Title
+  //           labelText: 'Locación del recurso',
+  //           // helperText: 'Defina un nombre del nuevo recurso',
+  //           icon: Icon(Icons.location_city)),
+  //       // onChanged: (valor) {
+  //       //   _location = valor;
+  //       // },
+  //     ),
+  //   );
+  // }
 
-  Widget _labelInput() {
-    return Container(
-      margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
-      child: TextField(
-        controller: labelCtr,
-        textCapitalization: TextCapitalization.sentences,
-        decoration: InputDecoration(
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
-            hintText: 'Etiquetas del recurso', //Title
-            labelText: 'Etiquetas del recurso',
-            // helperText: 'Defina un nombre del nuevo recurso',
-            icon: Icon(Icons.label)),
-        // onChanged: (valor) {
-        //   _label = valor;
-        // },
-      ),
-    );
-  }
+  // Widget _labelInput() {
+  //   return Container(
+  //     margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
+  //     child: TextField(
+  //       controller: labelCtr,
+  //       textCapitalization: TextCapitalization.sentences,
+  //       decoration: InputDecoration(
+  //           border:
+  //               OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
+  //           hintText: 'Etiquetas del recurso', //Title
+  //           labelText: 'Etiquetas del recurso',
+  //           // helperText: 'Defina un nombre del nuevo recurso',
+  //           icon: Icon(Icons.label)),
+  //       // onChanged: (valor) {
+  //       //   _label = valor;
+  //       // },
+  //     ),
+  //   );
+  // }
 
-  Widget _fnInput() {
-    return Container(
-      margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
-      child: TextField(
-        controller: fnCtr,
-        textCapitalization: TextCapitalization.sentences,
-        decoration: InputDecoration(
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
-            hintText: 'Fn del recurso', //Title
-            labelText: 'Fn del recurso',
-            // helperText: 'Defina un nombre del nuevo recurso',
-            icon: Icon(Icons.fullscreen_exit_outlined)),
-        // onChanged: (valor) {
-        //   _fn = valor;
-        // },
-      ),
-    );
-  }
+  // Widget _fnInput() {
+  //   return Container(
+  //     margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
+  //     child: TextField(
+  //       controller: fnCtr,
+  //       textCapitalization: TextCapitalization.sentences,
+  //       decoration: InputDecoration(
+  //           border:
+  //               OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
+  //           hintText: 'Fn del recurso', //Title
+  //           labelText: 'Fn del recurso',
+  //           // helperText: 'Defina un nombre del nuevo recurso',
+  //           icon: Icon(Icons.fullscreen_exit_outlined)),
+  //       // onChanged: (valor) {
+  //       //   _fn = valor;
+  //       // },
+  //     ),
+  //   );
+  // }
 
   Widget _cargarImagenInput() {
     return Container(
@@ -273,7 +271,7 @@ class _InputsPage extends State<InputsPage> {
           Text(
             'Imagenes del recurso',
             textAlign: TextAlign.left,
-            style: TextStyle(color: Colors.blue, fontSize: 12),
+            style: const TextStyle(color: Colors.blue, fontSize: 12),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -283,15 +281,18 @@ class _InputsPage extends State<InputsPage> {
                   children: <Widget>[
                     // Text('Buscar Imagen'),
                     MaterialButton(
-                      child: Text('Abrir Galeria'),
                       onPressed: () async {
                         ImagePicker _img = ImagePicker();
                         PickedFile? _pickerFile =
+                            // ignore: deprecated_member_use
                             await _img.getImage(source: ImageSource.gallery);
+                        // (await _img.pickMultiImage(imageQuality: 100))
+                        //     as PickedFile?;
                         if (_pickerFile == null) {
                           _imgPath = '';
                         } else {
                           _imgPath = _pickerFile.path;
+                          print(_imgPath);
                         }
 
                         setState(() {});
@@ -299,6 +300,7 @@ class _InputsPage extends State<InputsPage> {
                         print(_imgPath);
                       },
                       color: Colors.blue[100],
+                      child: const Text('Abrir Galeria'),
                     )
                   ],
                 ),
@@ -350,39 +352,49 @@ class _InputsPage extends State<InputsPage> {
     );
   }
 
-  Widget _linkInput() {
-    return Container(
-      margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
-      child: TextField(
-        controller: linkCtr,
-        textCapitalization: TextCapitalization.sentences,
-        decoration: InputDecoration(
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
-            hintText: 'Link del recurso', //Title
-            labelText: 'Link del recurso',
-            // helperText: 'Defina un nombre del nuevo recurso',
-            icon: Icon(Icons.label)),
-        // onChanged: (valor) {
-        //   _link = valor;
-        // },
-      ),
-    );
-  }
+  // Widget _linkInput() {
+  //   return Container(
+  //     margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
+  //     child: TextField(
+  //       controller: linkCtr,
+  //       textCapitalization: TextCapitalization.sentences,
+  //       decoration: InputDecoration(
+  //           border:
+  //               OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
+  //           hintText: 'Link del recurso', //Title
+  //           labelText: 'Link del recurso',
+  //           // helperText: 'Defina un nombre del nuevo recurso',
+  //           icon: Icon(Icons.label)),
+  //       // onChanged: (valor) {
+  //       //   _link = valor;
+  //       // },
+  //     ),
+  //   );
+  // }
 
   Future<http.StreamedResponse> pathImage(String url, String filePath) async {
+    ///
+    /// Modelo anterior
+    ///
+    // Map<String, String> modelo = <String, String>{
+    //   'descripcion': '$_descricion',
+    //   'userId': '22222222344a010c5dcab4b',
+    //   'latitud': '$_latitud',
+    //   'longitud': '$_longitud',
+    //   'address': '$_address',
+    //   'location': '$_location',
+    //   'link': '$_link',
+    //   'title': '$_title',
+    //   'label': '$_label',
+    //   'fn': '$_fn',
+    //   'status': 'aprobado',
+    // };
     Map<String, String> modelo = <String, String>{
-      'descripcion': '$_descricion',
-      'userId': '22222222344a010c5dcab4b',
+      'usuarioId': '14',
       'latitud': '$_latitud',
-      'longitud': '$_longitud',
-      'address': '$_address',
-      'location': '$_location',
-      'link': '$_link',
-      'title': '$_title',
-      'label': '$_label',
-      'fn': '$_fn',
-      'status': 'aprobado',
+      'longitud': ' $_longitud',
+      'descripcion': '$_descricion',
+      'nombre': '$_title',
     };
     String model = json.encode(modelo);
     var request = http.MultipartRequest('POST', Uri.parse(url));
@@ -392,6 +404,7 @@ class _InputsPage extends State<InputsPage> {
     var response = await request.send();
     final respStr = await response.stream.bytesToString();
     if (response.statusCode == 200) print('Uploaded!');
+    print(response.statusCode);
     return jsonDecode(respStr);
   }
 }

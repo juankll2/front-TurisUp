@@ -29,7 +29,7 @@ class CargarJsonPlacesState extends State<CargarJsonPlaces> {
   static Future<List<Datos_Place>> getPlaces() async {
     Map<String, String> modelo = <String, String>{};
     String model = json.encode(modelo);
-    const url = 'http://192.168.43.127:8083/api/recurso/todos';
+    const url = 'http://34.136.87.84:8083/api/recurso/todos';
     final response = await http.get(
       Uri.parse(url),
     );

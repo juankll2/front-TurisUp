@@ -66,38 +66,38 @@ class _CrearRecursoPageState extends State<CrearRecursoPage> {
                 labelText: 'Longitud',
               ),
             )),
-        formItemsDesign(
-            Icons.person,
-            TextFormField(
-              controller: nameCtrl,
-              decoration: const InputDecoration(
-                labelText: 'Location',
-              ),
-            )),
-        formItemsDesign(
-            Icons.person,
-            TextFormField(
-              controller: nameCtrl,
-              decoration: const InputDecoration(
-                labelText: 'Link',
-              ),
-            )),
-        formItemsDesign(
-            Icons.person,
-            TextFormField(
-              controller: nameCtrl,
-              decoration: const InputDecoration(
-                labelText: 'asfafds',
-              ),
-            )),
-        formItemsDesign(
-            Icons.person,
-            TextFormField(
-              controller: nameCtrl,
-              decoration: const InputDecoration(
-                labelText: 'sdafas',
-              ),
-            )),
+        // formItemsDesign(
+        //     Icons.person,
+        //     TextFormField(
+        //       controller: nameCtrl,
+        //       decoration: const InputDecoration(
+        //         labelText: 'Location',
+        //       ),
+        //     )),
+        // formItemsDesign(
+        //     Icons.person,
+        //     TextFormField(
+        //       controller: nameCtrl,
+        //       decoration: const InputDecoration(
+        //         labelText: 'Link',
+        //       ),
+        //     )),
+        // formItemsDesign(
+        //     Icons.person,
+        //     TextFormField(
+        //       controller: nameCtrl,
+        //       decoration: const InputDecoration(
+        //         labelText: 'asfafds',
+        //       ),
+        //     )),
+        // formItemsDesign(
+        //     Icons.person,
+        //     TextFormField(
+        //       controller: nameCtrl,
+        //       decoration: const InputDecoration(
+        //         labelText: 'sdafas',
+        //       ),
+        //     )),
         formItemsDesign(
             Icons.person,
             TextFormField(
@@ -106,22 +106,22 @@ class _CrearRecursoPageState extends State<CrearRecursoPage> {
                 labelText: 'title',
               ),
             )),
-        formItemsDesign(
-            Icons.person,
-            TextFormField(
-              controller: nameCtrl,
-              decoration: const InputDecoration(
-                labelText: 'label',
-              ),
-            )),
-        formItemsDesign(
-            Icons.person,
-            TextFormField(
-              controller: nameCtrl,
-              decoration: const InputDecoration(
-                labelText: 'fn',
-              ),
-            )),
+        // formItemsDesign(
+        //     Icons.person,
+        //     TextFormField(
+        //       controller: nameCtrl,
+        //       decoration: const InputDecoration(
+        //         labelText: 'label',
+        //       ),
+        //     )),
+        // formItemsDesign(
+        //     Icons.person,
+        //     TextFormField(
+        //       controller: nameCtrl,
+        //       decoration: const InputDecoration(
+        //         labelText: 'fn',
+        //       ),
+        //     )),
       ],
     );
   }

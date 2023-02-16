@@ -23,7 +23,7 @@ class CargarJsonState extends State<CargarJson> {
   static Future<List<Datos_Place>> getPlaces() async {
     Map<String, String> modelo = <String, String>{};
     String model = json.encode(modelo);
-    const url = 'http://192.168.43.127:8083/api/recurso/todos';
+    const url = 'http://34.136.87.84:8083/api/recurso/todos';
     final response = await http.get(
       Uri.parse(url),
     );
@@ -62,10 +62,10 @@ class CargarJsonState extends State<CargarJson> {
               width: double.infinity,
               height: 250,
               child: Image(
-                image: NetworkImage(
-                    'https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg'),
-                // image: NetworkImage(paths[0]),
-                // color: Colors.amber,
+                // image: NetworkImage(
+                //     'https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg'),
+                image: NetworkImage(paths[0]),
+                color: Colors.amber,
                 height: 100,
                 width: double.infinity,
               ),
@@ -126,9 +126,9 @@ class CargarJsonState extends State<CargarJson> {
                     padding: const EdgeInsets.all(20),
                     // ignore: prefer_const_constructors
                     child: CircleAvatar(
-                      backgroundImage: NetworkImage(
-                          'https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg'),
-                      // backgroundImage: NetworkImage(paths[0]),
+                      // backgroundImage: NetworkImage(
+                      //     'https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg'),
+                      backgroundImage: NetworkImage(paths[0]),
                       radius: 30,
                     ),
                   ),
@@ -265,10 +265,10 @@ class CargarJsonState extends State<CargarJson> {
                     width: double.infinity,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
+                      // child: Image.network(
+                      //   ('https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg'),
                       child: Image.network(
-                        ('https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg'),
-                        // child: Image.network(
-                        //   (place.imagenesPaths[0]),
+                        (place.imagenesPaths[0]),
                         fit: BoxFit.fill,
                         //height: 150.0,
                         //width: 150.0,
@@ -321,8 +321,8 @@ class CargarJsonState extends State<CargarJson> {
                       builder: (context) => buildPresentation(
                           (place.nombre).toString(),
                           (place.descripcion).toString(),
-                          // place.imagenesPaths,
-                          (urlimagen),
+                          place.imagenesPaths,
+                          //(urlimagen),
                           (place.descripcion).toString(),
                           (place.organizacion!['nombre']).toString())));
             },
